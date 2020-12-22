@@ -3,7 +3,7 @@
 
 project:
   local:
-    protocol: http
+    protocol: https
     hostname: '${project.machine_name}.ddev.site'
 
 # You can set custom project aliases in drush/sites/*.site.yml.
