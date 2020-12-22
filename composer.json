@@ -7,19 +7,20 @@
         "php": ">=7.2",
         "acquia/blt": "^11.2.0",
         "acquia/drupal-spec-tool": "*",
-        "acquia/lightning": "dev-8.x-4.x",
         "acquia/memcache-settings": "*",
         "drupal/acquia_connector": "^1.5.0",
         "drupal/acquia_purge": "^1.0-beta3",
-        "drupal/cog": "^1.0.0",
         "drupal/config_split": "^1.0.0",
         "drupal/core-composer-scaffold": "^8.8",
-        "drupal/core-recommended": "^8.8.0",
+        "drupal/core-recommended": "8.9.10",
         "drupal/devel": "^2.0.0",
         "drupal/features": "^3.8.0",
         "drupal/qa_accounts": "^1.0.0-alpha1",
         "drupal/seckit": "^1.0.0-alpha2",
-        "drupal/shield": "^1.2.0"
+        "drupal/shield": "^1.2.0",
+        "drupal/views_role_based_global_text": "^1.1",
+        "lcatlett/blt-ddev": "dev-master",
+        "opigno/opigno_lms": "^2.18"
     },
     "require-dev": {
         "acquia/blt-require-dev": "11.x-dev"
@@ -88,7 +89,18 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
-        "patches": {}
+        "patches": {
+            "drupal/calendar": {
+                "3143737-2": "https://www.drupal.org/files/issues/2020-05-29/calendar-opigno-adaptation-3143737-2.patch"
+            }
+        },
+        "patches-ignore": {
+            "opigno/opigno_lms": {
+                "drupal/calendar": {
+                    "3143737-1": "https://www.drupal.org/files/issues/2020-05-29/calendar-opigno-adaptation-3143737-1.patch"
+                }
+            }
+        }
     },
     "autoload": {
         "psr-4": {
@@ -100,16 +112,66 @@
             "Drupal\\Tests\\PHPUnit\\": "tests/phpunit/src/"
         }
     },
-    "repositories": {
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "asset-packagist": {
+        {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "enyo/dropzone",
+                "version": "v5.5.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/enyo/dropzone.git",
+                    "type": "git",
+                    "reference": "v5.5.0"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "mozilla/pdf.js",
+                "version": "dev-master",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/mozilla/pdf.js/releases/download/v2.4.456/pdfjs-2.4.456-es5-dist.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "almende/vis",
+                "version": "v4.21.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/almende/vis.git",
+                    "type": "git",
+                    "reference": "v4.21.0"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "kenwheeler/slick",
+                "version": "1.8.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/kenwheeler/slick/archive/v1.8.1.zip",
+                    "type": "zip"
+                }
+            }
         }
-    },
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
